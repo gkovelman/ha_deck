@@ -95,6 +95,16 @@ uint8_t HaDeckDevice::get_brightness() {
 void HaDeckDevice::set_brightness(uint8_t value) {
     brightness_ = value;
     lcd.setBrightness(brightness_);
+    if (brightness_)
+    {
+        // brightness = (((brightness >> 1) + 8) / 13) + 5;
+        wakeup(nullptr);
+    }
+    else
+    {
+        sleep(nullptr);
+    }
+    
 }
 
 }  // namespace hd_device
